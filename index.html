@@ -455,34 +455,24 @@
 <!-- ==== ALL MAJOR JAVASCRIPT CDNS ENDS ==== -->
 
 <script src="./assets/assets/js/script.js"></script>
-<script>
-	const form = document.getElementById('contact-form');
+ <script>
+      $("#contact-form").submit(function(e) {
+        e.preventDefault();
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const name = document.querySelector('input[name="name"]').value;
-  const email = document.querySelector('input[name="email"]').value;
-  const phone = document.querySelector('input[name="phone"]').value;
-  const message = document.querySelector('textarea[name="message"]').value;
-
- const serviceID = 'service_cl9zqaq';
-   const templateID = template_l9q8n6p';
-
-   emailjs.sendForm(serviceID, templateID, this)
-    .then(() => {
-      btn.value = 'Send Email';
-      alert('Sent!');
-    }, (err) => {
-      btn.value = 'Send Email';
-      alert(JSON.stringify(err));
-    });
-});
-</script>
-	<script
-  type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"
-></script>
+        $.ajax({
+          type: "POST",
+          url: "send-email.php",
+          data: $(this).serialize(),
+          success: function(response) {
+            console.log("Email sent successfully: " + response);
+            // You can add a success message or form reset code here
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Error sending email: ", textStatus, errorThrown);
+          }
+        });
+      });
+    </script>
 
 </body>
 </html>
