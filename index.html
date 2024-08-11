@@ -466,7 +466,10 @@ form.addEventListener('submit', (e) => {
   const phone = document.querySelector('input[name="phone"]').value;
   const message = document.querySelector('textarea[name="message"]').value;
 
-   emailjs.sendForm(service_cl9zqaq, template_l9q8n6p, this)
+ const serviceID = 'service_cl9zqaq';
+   const templateID = template_l9q8n6p';
+
+   emailjs.sendForm(serviceID, templateID, this)
     .then(() => {
       btn.value = 'Send Email';
       alert('Sent!');
