@@ -455,6 +455,37 @@
 <!-- ==== ALL MAJOR JAVASCRIPT CDNS ENDS ==== -->
 
 <script src="./assets/assets/js/script.js"></script>
+<script>
+	const form = document.getElementById('contact-form');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const name = document.querySelector('input[name="name"]').value;
+  const email = document.querySelector('input[name="email"]').value;
+  const phone = document.querySelector('input[name="phone"]').value;
+  const message = document.querySelector('textarea[name="message"]').value;
+
+  emailjs.send('service_cl9zqaq', 'template_l9q8n6p', {
+    name: name,
+    email: email,
+    phone: phone,
+    message: message
+  })
+  .then((response) => {
+    console.log('Email sent successfully!', response);
+    // You can also display a success message to the user here
+  })
+  .catch((error) => {
+    console.error('Error sending email:', error);
+    // You can also display an error message to the user here
+  });
+});
+</script>
+	<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"
+></script>
 
 </body>
 </html>
