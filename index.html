@@ -466,20 +466,14 @@ form.addEventListener('submit', (e) => {
   const phone = document.querySelector('input[name="phone"]').value;
   const message = document.querySelector('textarea[name="message"]').value;
 
-  emailjs.send('service_cl9zqaq', 'template_l9q8n6p', {
-    name: name,
-    email: email,
-    phone: phone,
-    message: message
-  })
-  .then((response) => {
-    console.log('Email sent successfully!', response);
-    // You can also display a success message to the user here
-  })
-  .catch((error) => {
-    console.error('Error sending email:', error);
-    // You can also display an error message to the user here
-  });
+   emailjs.sendForm(service_cl9zqaq, template_l9q8n6p, this)
+    .then(() => {
+      btn.value = 'Send Email';
+      alert('Sent!');
+    }, (err) => {
+      btn.value = 'Send Email';
+      alert(JSON.stringify(err));
+    });
 });
 </script>
 	<script
